@@ -1,78 +1,82 @@
 import { useState } from "react";
-
 import { MovieCard } from "../movie-card/movie-card";
-
 import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([
     {
       id: 1,
-      title: "Eloquent JavaScript",
+      title: "The Shawshank Redemption",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
-      author: "Marijn Haverbeke"
+        "https://m.media-amazon.com/images/I/71KJTxW1yML._AC_SY679_.jpg",
+      director: "Frank Darabont"
     },
     {
       id: 2,
-      title: "Mastering JavaScript Functional Programming",
+      title: "Tenet",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/51WAikRq37L._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-      author: "Federico Kereki"
+        "https://m.media-amazon.com/images/I/91JmduXIc+L._AC_SY679_.jpg",
+      director: "Christopher Nolan"
     },
     {
       id: 3,
-      title: "JavaScript: The Good Parts",
+      title: "Inception",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/5131OWtQRaL._SX381_BO1,204,203,200_.jpg",
-      author: "Douglas Crockford"
+        "https://m.media-amazon.com/images/I/91X1hI3FqSL._AC_SY679_.jpg",
+      director: "Christopher Nolan"
     },
     {
       id: 4,
-      title: "JavaScript: The Definitive Guide",
+      title: "Dunkirk",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/51HbNW6RzhL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-      author: "David Flanagan"
+        "https://m.media-amazon.com/images/I/91hMDezAxRL._AC_SY679_.jpg",
+      director: "Christopher Nolan"
     },
     {
       id: 5,
-      title: "The Road to React",
+      title: "The Prestige",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/41MBLi5a4jL._SX384_BO1,204,203,200_.jpg",
-      author: "Robin Wieruch"
+        "https://m.media-amazon.com/images/I/51L2H+7GzHL._AC_SY679_.jpg",
+      director: "Christopher Nolan"
+    },
+    {
+      id: 6,
+      title: "The Dark Knight",
+      image:
+        "https://m.media-amazon.com/images/I/71cDDqyoEgL._AC_SY679_.jpg",
+      director: "Christopher Nolan"
     }
   ]);
 
-
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  // Function to handle the back click
+  const handleBackClick = () => {
+    setSelectedMovie(null); // Reset selected movie to null to go back to the main view
+  };
+
+  // If a movie is selected, show the MovieView
   if (selectedMovie) {
-    return (
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    );
+    return <MovieView movie={selectedMovie} onBackClick={handleBackClick} />;
   }
 
-  if (selectedMovie) {
-    return <MovieView movie={selectedMovie} />;
-  }
-
-
-
+  // If no movies, show a message
   if (movies.length === 0) {
     return <div>The list is empty!</div>;
   }
 
+  // Otherwise, show the list of movie cards
   return (
     <div>
       {movies.map((movie) => (
-         <MovieCard
-         key={movie.id}
-         movie={movie}
-         onMovieClick={() => {
-           setSelectedMovie(movie);
-         }}
-       />
-     ))}
-   </div>
- );
-}
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onMovieClick={() => {
+            setSelectedMovie(movie); // Set selected movie when clicked
+          }}
+        />
+      ))}
+    </div>
+  );
+};

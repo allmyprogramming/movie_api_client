@@ -1,18 +1,20 @@
+import React from "react";
+
 export const MovieView = ({ movie, onBackClick }) => {
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <img src={movie.image} alt={`Cover of ${movie.title}`} />
-        </div>
-        <div>
-          <h2>{movie.title}</h2>
-          <div>
-            <span>Author: </span>
-            <span>{movie.author}</span>
-          </div>
-        </div>
-        <button onClick={onBackClick}>Back</button> {/* Trigger the onBackClick */}
+        <img src={movie.image} alt={movie.title} />
       </div>
-    );
-  };
-  
+      <div>
+        <span>Title: </span>
+        <span>{movie.title}</span>
+      </div>
+      <div>
+        <span>Author: </span>
+        <span>{movie.author}</span>
+      </div>
+      <button onClick={onBackClick}>Back</button> {/* Trigger the onBackClick */}
+    </div>
+  );
+};
