@@ -18592,38 +18592,50 @@ const MainView = ()=>{
         {
             id: 1,
             title: "The Shawshank Redemption",
-            image: "https://via.placeholder.com/150",
-            director: "Frank Darabont"
+            image: "https://m.media-amazon.com/images/I/71KJTxW1yML._AC_SY679_.jpg",
+            director: "Frank Darabont",
+            genre: "Drama",
+            description: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
         },
         {
             id: 2,
             title: "Tenet",
-            image: "https://via.placeholder.com/150",
-            director: "Christopher Nolan"
+            image: "https://m.media-amazon.com/images/I/91JmduXIc+L._AC_SY679_.jpg",
+            director: "Christopher Nolan",
+            genre: "Action, Sci-Fi",
+            description: "A secret agent embarks on a dangerous, time-bending mission to prevent the onset of World War III."
         },
         {
             id: 3,
             title: "Inception",
-            image: "https://via.placeholder.com/150",
-            director: "Christopher Nolan"
+            image: "https://m.media-amazon.com/images/I/91X1hI3FqSL._AC_SY679_.jpg",
+            director: "Christopher Nolan",
+            genre: "Action, Adventure, Sci-Fi",
+            description: "A thief who enters the dreams of others to steal secrets from their subconscious is given the task of planting an idea into the mind of a CEO."
         },
         {
             id: 4,
             title: "Dunkirk",
-            image: "https://via.placeholder.com/150",
-            director: "Christopher Nolan"
+            image: "https://m.media-amazon.com/images/I/91hMDezAxRL._AC_SY679_.jpg",
+            director: "Christopher Nolan",
+            genre: "Action, Drama, History",
+            description: "Allied soldiers from Belgium, the British Empire, and France are surrounded by the German army and evacuated during a fierce battle in World War II."
         },
         {
             id: 5,
             title: "The Prestige",
-            image: "https://via.placeholder.com/150",
-            director: "Christopher Nolan"
+            image: "https://m.media-amazon.com/images/I/51L2H+7GzHL._AC_SY679_.jpg",
+            director: "Christopher Nolan",
+            genre: "Drama, Mystery, Sci-Fi",
+            description: "Two magicians engage in a bitter rivalry, each trying to best the other's tricks in a battle for supremacy, which leads to shocking consequences."
         },
         {
             id: 6,
             title: "The Dark Knight",
-            image: "https://via.placeholder.com/150",
-            director: "Christopher Nolan"
+            image: "https://m.media-amazon.com/images/I/71cDDqyoEgL._AC_SY679_.jpg",
+            director: "Christopher Nolan",
+            genre: "Action, Crime, Drama",
+            description: "When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham, forcing Batman to come out of retirement."
         }
     ]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
@@ -18637,7 +18649,7 @@ const MainView = ()=>{
         onBackClick: handleBackClick
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 60,
+        lineNumber: 72,
         columnNumber: 12
     }, undefined);
     // If no movies, show a message
@@ -18645,7 +18657,7 @@ const MainView = ()=>{
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 65,
+        lineNumber: 77,
         columnNumber: 12
     }, undefined);
     // Otherwise, show the list of movie cards
@@ -18657,16 +18669,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 72,
+                lineNumber: 84,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 70,
+        lineNumber: 82,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "7uChap+nCc7HIaptSrH4l07WGtI=");
+_s(MainView, "nCInFv71zKAKauEWPjPUVs/Ir4o=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -18944,19 +18956,61 @@ const MovieView = ({ movie, onBackClick })=>{
                         lineNumber: 14,
                         columnNumber: 9
                     }, undefined),
-                    " ",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: movie.director
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 15,
                         columnNumber: 9
-                    }, undefined),
-                    " "
+                    }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
                 lineNumber: 13,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Genre: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 18,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.genre
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 19,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 17,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Description: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 22,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: movie.description
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 23,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 21,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -18964,7 +19018,7 @@ const MovieView = ({ movie, onBackClick })=>{
                 children: "Back"
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 17,
+                lineNumber: 25,
                 columnNumber: 7
             }, undefined),
             " "
