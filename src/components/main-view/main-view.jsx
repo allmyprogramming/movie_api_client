@@ -8,42 +8,42 @@ export const MainView = () => {
       id: 1,
       title: "The Shawshank Redemption",
       image:
-        "https://m.media-amazon.com/images/I/71KJTxW1yML._AC_SY679_.jpg",
+        "https://via.placeholder.com/150",
       director: "Frank Darabont"
     },
     {
       id: 2,
       title: "Tenet",
       image:
-        "https://m.media-amazon.com/images/I/91JmduXIc+L._AC_SY679_.jpg",
+        "https://via.placeholder.com/150",
       director: "Christopher Nolan"
     },
     {
       id: 3,
       title: "Inception",
       image:
-        "https://m.media-amazon.com/images/I/91X1hI3FqSL._AC_SY679_.jpg",
+        "https://via.placeholder.com/150",
       director: "Christopher Nolan"
     },
     {
       id: 4,
       title: "Dunkirk",
       image:
-        "https://m.media-amazon.com/images/I/91hMDezAxRL._AC_SY679_.jpg",
+        "https://via.placeholder.com/150",
       director: "Christopher Nolan"
     },
     {
       id: 5,
       title: "The Prestige",
       image:
-        "https://m.media-amazon.com/images/I/51L2H+7GzHL._AC_SY679_.jpg",
+        "https://via.placeholder.com/150",
       director: "Christopher Nolan"
     },
     {
       id: 6,
       title: "The Dark Knight",
       image:
-        "https://m.media-amazon.com/images/I/71cDDqyoEgL._AC_SY679_.jpg",
+        "https://via.placeholder.com/150",
       director: "Christopher Nolan"
     }
   ]);

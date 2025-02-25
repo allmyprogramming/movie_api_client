@@ -18592,37 +18592,37 @@ const MainView = ()=>{
         {
             id: 1,
             title: "The Shawshank Redemption",
-            image: "https://m.media-amazon.com/images/I/71KJTxW1yML._AC_SY679_.jpg",
+            image: "https://via.placeholder.com/150",
             director: "Frank Darabont"
         },
         {
             id: 2,
             title: "Tenet",
-            image: "https://m.media-amazon.com/images/I/91JmduXIc+L._AC_SY679_.jpg",
+            image: "https://via.placeholder.com/150",
             director: "Christopher Nolan"
         },
         {
             id: 3,
             title: "Inception",
-            image: "https://m.media-amazon.com/images/I/91X1hI3FqSL._AC_SY679_.jpg",
+            image: "https://via.placeholder.com/150",
             director: "Christopher Nolan"
         },
         {
             id: 4,
             title: "Dunkirk",
-            image: "https://m.media-amazon.com/images/I/91hMDezAxRL._AC_SY679_.jpg",
+            image: "https://via.placeholder.com/150",
             director: "Christopher Nolan"
         },
         {
             id: 5,
             title: "The Prestige",
-            image: "https://m.media-amazon.com/images/I/51L2H+7GzHL._AC_SY679_.jpg",
+            image: "https://via.placeholder.com/150",
             director: "Christopher Nolan"
         },
         {
             id: 6,
             title: "The Dark Knight",
-            image: "https://m.media-amazon.com/images/I/71cDDqyoEgL._AC_SY679_.jpg",
+            image: "https://via.placeholder.com/150",
             director: "Christopher Nolan"
         }
     ]);
@@ -18666,7 +18666,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "8qTIQDsp90RHgmXe+scgAuE5gFY=");
+_s(MainView, "7uChap+nCc7HIaptSrH4l07WGtI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -18938,19 +18938,21 @@ const MovieView = ({ movie, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Author: "
+                        children: "Director: "
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 14,
                         columnNumber: 9
                     }, undefined),
+                    " ",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.author
+                        children: movie.director
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 15,
                         columnNumber: 9
-                    }, undefined)
+                    }, undefined),
+                    " "
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
