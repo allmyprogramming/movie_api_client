@@ -7,13 +7,27 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-  fetch("https://movie-api-lvgy.onrender.com/movies")
-    .then((response) => response.json())
-    .then((data) => {
-      setMovies(data); // No need to rename fields
-    })
-    .catch((error) => console.error("Error fetching movies:", error));
-}, []);
+    // Fetch movies from the API
+    fetch("https://movie-api-lvgy.onrender.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        // Map through the data and format it
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id, // MongoDB ID field
+            title: movie.Title, // Title field from the DB
+            image: movie.ImageUrl, // ImageUrl field from the DB
+            director: movie.Director, // Director field from the DB
+            genre: movie.Genre, // Genre field from the DB
+            description: movie.Description, // Description field from the DB
+          };
+        });
+        setMovies(moviesFromApi); // Set the movies state
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error); // Handle errors
+      });
+  }, []); // Empty dependency array to run only once on component mount
 
   // Function to handle the back click
   const handleBackClick = () => {
