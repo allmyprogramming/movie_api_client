@@ -7,13 +7,13 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    fetch("https://movie-api-lvgy.onrender.com/movies")
-      .then((response) => response.json())
-      .then((data) => {
-        setMovies(data); // No need to rename fields
-      })
-      .catch((error) => console.error("Error fetching movies:", error));
-  }, []);
+  fetch("https://movie-api-lvgy.onrender.com/movies")
+    .then((response) => response.json())
+    .then((data) => {
+      setMovies(data); // No need to rename fields
+    })
+    .catch((error) => console.error("Error fetching movies:", error));
+}, []);
 
   // Function to handle the back click
   const handleBackClick = () => {
