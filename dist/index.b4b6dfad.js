@@ -18591,24 +18591,10 @@ const MainView = ()=>{
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
-        // Fetch movies from the API
         fetch("https://movie-api-lvgy.onrender.com/movies").then((response)=>response.json()).then((data)=>{
-            // Map through the data and format it
-            const moviesFromApi = data.map((movie)=>{
-                return {
-                    id: movie._id,
-                    title: movie.Title,
-                    image: movie.ImageUrl,
-                    director: movie.Director,
-                    genre: movie.Genre,
-                    description: movie.Description
-                };
-            });
-            setMovies(moviesFromApi); // Set the movies state
-        }).catch((error)=>{
-            console.error("Error fetching movies:", error); // Handle errors
-        });
-    }, []); // Empty dependency array to run only once on component mount
+            setMovies(data); // No need to rename fields
+        }).catch((error)=>console.error("Error fetching movies:", error));
+    }, []);
     // Function to handle the back click
     const handleBackClick = ()=>{
         setSelectedMovie(null); // Reset selected movie to null to go back to the main view
@@ -18619,7 +18605,7 @@ const MainView = ()=>{
         onBackClick: handleBackClick
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 39,
+        lineNumber: 25,
         columnNumber: 12
     }, undefined);
     // If no movies are fetched, show a message
@@ -18627,7 +18613,7 @@ const MainView = ()=>{
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 44,
+        lineNumber: 30,
         columnNumber: 12
     }, undefined);
     // Otherwise, show the list of movie cards
@@ -18639,12 +18625,12 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 51,
+                lineNumber: 37,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 49,
+        lineNumber: 35,
         columnNumber: 5
     }, undefined);
 };
