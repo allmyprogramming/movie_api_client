@@ -16,11 +16,11 @@ export const MovieView = ({ movie, onBackClick }) => {
       </div>
       <div>
         <span>Director: </span>
-        <span>{movie.director?.Name || "N/A"}</span> {/* Avoid errors if undefined */}
+        <span>{movie.director || "N/A"}</span> {/* Avoid errors if undefined */}
       </div>
       <div>
         <span>Genre: </span>
-        <span>{movie.genre?.Name || "N/A"}</span>
+        <span>{movie.genre || "N/A"}</span>
       </div>
       <div>
         <span>Description: </span>
