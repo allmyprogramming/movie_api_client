@@ -4,6 +4,8 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(null);
@@ -11,15 +13,15 @@ export const MainView = () => {
 
   // Fetch movies when the token is available
   useEffect(() => {
-    if (!token) {
-      return; // Don't fetch movies if there's no token
-    }
+    if (!token) return;
+ 
 
     fetch("https://movie-api-lvgy.onrender.com/movies", {
       headers: { Authorization: `Bearer ${token}` }, // Use token for authorization
     })
-      .then((response) => response.json())
-      .then((data) => {
+    .then((response) => response.json())
+    .then((movies) => {
+      setMovies(movies);
         const moviesFromApi = data.map((movie) => {
           return {
             id: movie._id, // MongoDB ID field

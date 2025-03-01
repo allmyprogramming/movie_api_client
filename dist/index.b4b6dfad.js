@@ -18589,18 +18589,21 @@ var _loginView = require("../login-view/login-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     const [user, setUser] = (0, _react.useState)(null);
     const [token, setToken] = (0, _react.useState)(null); // Token state
     // Fetch movies when the token is available
     (0, _react.useEffect)(()=>{
-        if (!token) return; // Don't fetch movies if there's no token
+        if (!token) return;
         fetch("https://movie-api-lvgy.onrender.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then((response)=>response.json()).then((data)=>{
+        }).then((response)=>response.json()).then((movies)=>{
+            setMovies(movies);
             const moviesFromApi = data.map((movie)=>{
                 return {
                     id: movie._id,
@@ -18628,7 +18631,7 @@ const MainView = ()=>{
         }
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 45,
+        lineNumber: 47,
         columnNumber: 7
     }, undefined);
     // If a movie is selected, show the MovieView
@@ -18637,7 +18640,7 @@ const MainView = ()=>{
         onBackClick: handleBackClick
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 56,
+        lineNumber: 58,
         columnNumber: 12
     }, undefined);
     // If no movies are fetched, show a message
@@ -18645,7 +18648,7 @@ const MainView = ()=>{
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 61,
+        lineNumber: 63,
         columnNumber: 12
     }, undefined);
     // Otherwise, show the list of movie cards
@@ -18657,12 +18660,12 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 68,
+                lineNumber: 70,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 66,
+        lineNumber: 68,
         columnNumber: 5
     }, undefined);
 };
