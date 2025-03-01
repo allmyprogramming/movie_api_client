@@ -13,7 +13,7 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    fetch("https://movie-api-lvgy.onrender.com/login", {
+    fetch("https://movie-api-lvgy.onrender.com", {
         method: "POST",
       headers: {
         "Content-Type": "application/json"
