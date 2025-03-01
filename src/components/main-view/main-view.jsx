@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Fetch movies from the API
@@ -33,6 +35,10 @@ export const MainView = () => {
   const handleBackClick = () => {
     setSelectedMovie(null); // Reset selected movie to null to go back to the main view
   };
+
+  if (!user) {
+    return <LoginView />;
+  }
 
   // If a movie is selected, show the MovieView
   if (selectedMovie) {
