@@ -7,13 +7,19 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null); // Token state
 
+  // Fetch movies when the token is available
   useEffect(() => {
-    // Fetch movies from the API
-    fetch("https://movie-api-lvgy.onrender.com/movies")
+    if (!token) {
+      return; // Don't fetch movies if there's no token
+    }
+
+    fetch("https://movie-api-lvgy.onrender.com/movies", {
+      headers: { Authorization: `Bearer ${token}` }, // Use token for authorization
+    })
       .then((response) => response.json())
       .then((data) => {
-        // Map through the data and format it
         const moviesFromApi = data.map((movie) => {
           return {
             id: movie._id, // MongoDB ID field
@@ -25,19 +31,24 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromApi); // Set the movies state
-      })
-      .catch((error) => {
-        console.error("Error fetching movies:", error); // Handle errors
       });
-  }, []); // Empty dependency array to run only once on component mount
+  }, [token]); // Depend on token to fetch movies when it changes
 
   // Function to handle the back click
   const handleBackClick = () => {
     setSelectedMovie(null); // Reset selected movie to null to go back to the main view
   };
 
+  // If no user is logged in, show the login view
   if (!user) {
-    return <LoginView />;
+    return (
+      <LoginView
+        onLoggedIn={(user, token) => {
+          setUser(user); // Set the logged-in user
+          setToken(token); // Set the token
+        }}
+      />
+    );
   }
 
   // If a movie is selected, show the MovieView

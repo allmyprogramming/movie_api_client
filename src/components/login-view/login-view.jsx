@@ -3,7 +3,6 @@ import React, { useState } from "react";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null); // Store login error messages
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,23 +14,25 @@ export const LoginView = ({ onLoggedIn }) => {
     };
 
     fetch("https://movie-api-lvgy.onrender.com/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" }, // Set headers
-      body: JSON.stringify(data), // Convert data to JSON format
+        method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
     })
       .then((response) => response.json())
-      .then((userData) => {
-        if (userData.token) {
-          onLoggedIn(userData); // Pass user data to MainView
+      .then((data) => {
+        console.log("Login response: ", data);
+        if (data.user) {
+          onLoggedIn(data.user, data.token);
         } else {
-          setError("Invalid username or password"); // Show error if login fails
+          alert("No such user");
         }
       })
-      .catch(() => {
-        setError("Something went wrong. Please try again.");
+      .catch((e) => {
+        alert("Something went wrong");
       });
-  };
-
+    };
   return (
     <form onSubmit={handleSubmit}>
       <label>
