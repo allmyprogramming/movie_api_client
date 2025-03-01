@@ -18589,12 +18589,14 @@ var _loginView = require("../login-view/login-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+    // Retrieve stored user and token from localStorage
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
+    // Initialize state with stored values
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const [user, setUser] = (0, _react.useState)(null);
-    const [token, setToken] = (0, _react.useState)(null); // Token state
+    const [user, setUser] = (0, _react.useState)(storedUser || null);
+    const [token, setToken] = (0, _react.useState)(storedToken || null); // Use stored token if available
     // Fetch movies when the token is available
     (0, _react.useEffect)(()=>{
         if (!token) return;
@@ -18602,45 +18604,47 @@ const MainView = ()=>{
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then((response)=>response.json()).then((movies)=>{
-            setMovies(movies);
-            const moviesFromApi = data.map((movie)=>{
-                return {
+        }).then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.map((movie)=>({
                     id: movie._id,
                     title: movie.Title,
                     image: movie.ImageUrl,
                     director: movie.Director,
                     genre: movie.Genre,
                     description: movie.Description
-                };
-            });
+                }));
             setMovies(moviesFromApi); // Set the movies state
         });
     }, [
         token
     ]); // Depend on token to fetch movies when it changes
-    // Function to handle the back click
-    const handleBackClick = ()=>{
-        setSelectedMovie(null); // Reset selected movie to null to go back to the main view
+    // Function to handle logout
+    const handleLogout = ()=>{
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
     };
     // If no user is logged in, show the login view
     if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
         onLoggedIn: (user, token)=>{
             setUser(user); // Set the logged-in user
             setToken(token); // Set the token
+            localStorage.setItem("user", JSON.stringify(user)); // Save user to localStorage
+            localStorage.setItem("token", token); // Save token to localStorage
         }
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 47,
+        lineNumber: 49,
         columnNumber: 7
     }, undefined);
     // If a movie is selected, show the MovieView
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
-        onBackClick: handleBackClick
+        onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 58,
+        lineNumber: 62,
         columnNumber: 12
     }, undefined);
     // If no movies are fetched, show a message
@@ -18648,28 +18652,38 @@ const MainView = ()=>{
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 63,
+        lineNumber: 67,
         columnNumber: 12
     }, undefined);
     // Otherwise, show the list of movie cards
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                movie: movie,
-                onMovieClick: ()=>{
-                    setSelectedMovie(movie); // Set the selected movie when clicked
-                }
-            }, movie.id, false, {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: handleLogout,
+                children: "Logout"
+            }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 70,
-                columnNumber: 9
-            }, undefined))
-    }, void 0, false, {
+                lineNumber: 73,
+                columnNumber: 7
+            }, undefined),
+            movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                    movie: movie,
+                    onMovieClick: ()=>{
+                        setSelectedMovie(movie); // Set the selected movie when clicked
+                    }
+                }, movie.id, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 75,
+                    columnNumber: 9
+                }, undefined))
+        ]
+    }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 68,
+        lineNumber: 72,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "ld1mNqbzEgxPu9ZfASjBJ7ZrUMw=");
+_s(MainView, "vu1kkgqaBre6qOtLVXzDvq1d3DM=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
