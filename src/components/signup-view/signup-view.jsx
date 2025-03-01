@@ -6,7 +6,17 @@ export const SignupView = () => {
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
 
-  const handleSubmit = (event) => {};
+  const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const data = {
+          Username: username,
+          Password: password,
+          Email: email,
+          Birthday: birthday
+        };
+
+    };
 
   return (
     <form onSubmit={handleSubmit}>
