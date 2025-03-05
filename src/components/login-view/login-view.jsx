@@ -39,7 +39,7 @@ export const LoginView = ({ onLoggedIn }) => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Username:
+        username:
         <input
           type="text"
           value={username}
@@ -48,7 +48,7 @@ export const LoginView = ({ onLoggedIn }) => {
         />
       </label>
       <label>
-        Password:
+        password:
         <input
           type="password"
           value={password}
