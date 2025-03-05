@@ -18583,16 +18583,19 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 var _loginView = require("../login-view/login-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const [user, setUser] = (0, _react.useState)(()=>JSON.parse(localStorage.getItem("user")));
-    const [token, setToken] = (0, _react.useState)(()=>localStorage.getItem("token"));
+    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://movie-api-lvgy.onrender.com/movies", {
@@ -18625,7 +18628,7 @@ const MainView = ()=>{
         }
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 41,
+        lineNumber: 43,
         columnNumber: 7
     }, undefined);
     // If a movie is selected, show the MovieView
@@ -18634,7 +18637,7 @@ const MainView = ()=>{
         onBackClick: handleBackClick
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 52,
+        lineNumber: 54,
         columnNumber: 12
     }, undefined);
     // If no movies are fetched, show a message
@@ -18642,7 +18645,7 @@ const MainView = ()=>{
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 57,
+        lineNumber: 59,
         columnNumber: 12
     }, undefined);
     (0, _react.useEffect)(()=>{
@@ -18666,16 +18669,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 78,
+                lineNumber: 80,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 76,
+        lineNumber: 78,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "uHBK1F/eddQC2bVY7tTf5PeNVug=");
+_s(MainView, "4tP5HlQmcYlHTKbXbOXnP2Sic5o=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
