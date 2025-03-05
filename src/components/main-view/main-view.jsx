@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view"
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -10,6 +11,8 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+
+
 
 
 useEffect(() => {
@@ -28,6 +31,7 @@ useEffect(() => {
         genre: movie.Genre, 
         description: movie.Description, 
       }));
+
       setMovies(moviesFromApi);
     });
 }, [token]);
@@ -37,15 +41,16 @@ useEffect(() => {
     setSelectedMovie(null); // Reset selected movie to null to go back to the main view
   };
 
-  // If no user is logged in, show the login view
   if (!user) {
     return (
-      <LoginView
-        onLoggedIn={(user, token) => {
-          setUser(user); // Set the logged-in user
-          setToken(token); // Set the token
-        }}
-      />
+      <>
+        <LoginView onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }} />
+        or
+        <SignupView />
+      </>
     );
   }
 
