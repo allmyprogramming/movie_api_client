@@ -1,6 +1,8 @@
 import React from "react";
 
 import PropTypes from "prop-types";
+import "./movie-view.scss";
+
 
 export const MovieView = ({ movie, onBackClick }) => {
   if (!movie) {
@@ -28,7 +30,8 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>Description: </span>
         <p>{movie.description}</p>
       </div>
-      <button onClick={onBackClick}>Back</button>
+      <button onClick={onBackClick} className="back-button">
+        Back</button>
     </div>
   );
 };
