@@ -17,50 +17,54 @@ export const MainView = () => {
 
 
 
-useEffect(() => {
-  if (!token) return;
+  useEffect(() => {
+    if (!token) return;
 
-  fetch("https://movie-api-lvgy.onrender.com/movies", {
-    headers: { Authorization: `Bearer ${token}` },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const moviesFromApi = data.map((movie) => ({
-        id: movie._id, 
-        title: movie.Title, 
-        image: movie.ImageUrl, 
-        director: movie.Director, 
-        genre: movie.Genre, 
-        description: movie.Description, 
-      }));
+    fetch("https://movie-api-lvgy.onrender.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => ({
+          id: movie._id,
+          title: movie.Title,
+          image: movie.ImageUrl,
+          director: movie.Director,
+          genre: movie.Genre,
+          description: movie.Description,
+        }));
 
-      setMovies(moviesFromApi);
-    });
-}, [token]);
+        setMovies(moviesFromApi);
+      });
+  }, [token]);
 
-return (
-  <Row>
-    {!user ? (
-      <>
-        <LoginView onLoggedIn={(user, token) => {
-          setUser(user);
-          setToken(token);
-        }} />
-        <SignupView />
-      </>
-    ) : selectedMovie ? (
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    ) : movies.length === 0 ? (
-      <div>The list is empty!</div>
-    ) : (
-      <>
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} onMovieClick={() => setSelectedMovie(movie)} />
-        ))}
-      </>
-    )}
-  </Row>
-);
+  return (
+    <Row className="justify-content-md-center">
+      {!user ? (
+        
+        <Col md={5}>
+          <LoginView onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+          }} />
+          <SignupView />
+          </Col>
+        
+      ) : selectedMovie ? (
+        <Col md={8} style={{ border: "1px solid black" }}>
+        <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+        </Col>
+      ) : movies.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        <>
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} onMovieClick={() => setSelectedMovie(movie)} />
+          ))}
+        </>
+      )}
+    </Row>
+  );
 };
 
 /*
