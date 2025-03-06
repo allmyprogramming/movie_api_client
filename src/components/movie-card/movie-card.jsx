@@ -15,7 +15,8 @@ export const MovieCard = ({ movie, onMovieClick }) => {
         </Button>
       </Card.Body>
       </Card>
-
+  );
+};
 
 
 MovieCard.propTypes = {
