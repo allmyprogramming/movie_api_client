@@ -7,7 +7,7 @@ export const SignupView = () => {
   const [birthday, setBirthday] = useState("");
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevent page reload on form submission
 
     const data = {
       Username: username,
@@ -16,8 +16,7 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
-    // Correctly place the fetch request inside the handleSubmit function
-    fetch("https://movie-api-lvgy.onrender.com", {
+    fetch("https://movie-api-lvgy.onrender.com/signup", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -27,13 +26,13 @@ export const SignupView = () => {
       .then((response) => {
         if (response.ok) {
           alert("Signup successful");
-          window.location.reload(); // Refresh the page to show the logged-in state
+          window.location.reload();
         } else {
           alert("Signup failed");
         }
       })
       .catch((error) => {
-        alert("Error occurred: " + error.message); // Error handling in case of network or server issues
+        alert("Error during signup: " + error.message);
       });
   };
 
