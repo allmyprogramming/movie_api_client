@@ -16,6 +16,15 @@ export const MovieCard = ({ movie, onMovieClick }) => {
           <Button variant="primary">View Details
           </Button>
         </Link>
+
+        <Button
+          variant="secondary"
+          onClick={() => onMovieClick(movie.id)} // Handling favorite toggle
+          className="mt-2"
+        >
+          {movie.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </Button>
+
       </Card.Body>
     </Card>
   );
@@ -30,4 +39,5 @@ MovieCard.propTypes = {
     director: PropTypes.string,
     image: PropTypes.string, // Keeping 'image' as it is
   }).isRequired,
+  onMovieClick: PropTypes.func.isRequired,
 };
