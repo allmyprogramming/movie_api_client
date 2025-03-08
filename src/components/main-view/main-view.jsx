@@ -42,6 +42,31 @@ export const MainView = () => {
   return (
     <BrowserRouter>
     <Row className="justify-content-md-center">
+    <Routes>
+          <Route
+            path="/signup"
+            element={user ? <Navigate to="/" /> : <Col md={5}><SignupView /></Col>}
+          />
+
+<Route
+            path="/login"
+            element={user ? <Navigate to="/" /> : <Col md={5}><LoginView onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+            }} /></Col>}
+          />
+
+<Route
+            path="/movies/:movieId"
+            element={
+              !user ? <Navigate to="/login" replace /> :
+              selectedMovie ? <Col md={8}><MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} /></Col> :
+              <Col>The movie is not found!</Col>
+            }
+          />
+
+
+          </Routes>
       {!user ? (
         
         <Col md={5}>
