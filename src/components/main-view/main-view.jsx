@@ -41,57 +41,54 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-    <Row className="justify-content-md-center">
-    <Routes>
+      <Row className="justify-content-md-center">
+        <Routes>
           <Route
             path="/signup"
-            element={user ? <Navigate to="/" /> : <Col md={5}><SignupView /></Col>}
+            element={user ? <Navigate to="/" /> :
+              <Col md={5}>
+                <SignupView /></Col>}
           />
 
-<Route
+          <Route
             path="/login"
-            element={user ? <Navigate to="/" /> : <Col md={5}><LoginView onLoggedIn={(user, token) => {
-              setUser(user);
-              setToken(token);
-            }} /></Col>}
+            element={user ?
+              <Navigate to="/" /> : <Col md={5}>
+                <LoginView
+                  onLoggedIn={(user, token) => {
+                    setUser(user);
+                    setToken(token);
+                  }} />
+              </Col>}
           />
 
-<Route
+          <Route
             path="/movies/:movieId"
             element={
-              !user ? <Navigate to="/login" replace /> :
-              selectedMovie ? <Col md={8}><MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} /></Col> :
-              <Col>The movie is not found!</Col>
+              !user ?
+                <Navigate to="/login" replace /> :
+                selectedMovie ? <Col md={8}><MovieView movie={selectedMovie}
+                  onBackClick={() => setSelectedMovie(null)} /></Col> :
+                  <Col>The list is empty!
+                  </Col>
             }
           />
 
-
-          </Routes>
-      {!user ? (
-        
-        <Col md={5}>
-          <LoginView onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }} />
-          <SignupView />
-          </Col>
-        
-      ) : selectedMovie ? (
-        <Col md={8} style={{ border: "1px solid black" }}>
-        <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-        </Col>
-      ) : movies.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {movies.map((movie) => (
-            <Col className="mb-5" key={movie.id} md={3}>
-            <MovieCard key={movie.id} movie={movie} onMovieClick={() => setSelectedMovie(movie)} /> </Col>
-          ))}
-        </>
-      )}
-    </Row>
+          <Route
+            path="/"
+            element={
+              !user ? <Navigate to="/login" replace /> :
+                movies.length === 0 ? <Col>The list is empty!</Col> :
+                  movies.map((movie) => (
+                    <Col className="mb-4" key={movie.id} md={3}>
+                      <MovieCard movie={movie}
+                        onMovieClick={() => setSelectedMovie(movie)} />
+                    </Col>
+                  ))
+            }
+          />
+        </Routes>
+      </Row>
     </BrowserRouter>
   );
 };
