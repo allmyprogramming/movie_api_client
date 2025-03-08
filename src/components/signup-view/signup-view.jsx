@@ -13,13 +13,13 @@ export const SignupView = () => {
     event.preventDefault(); // Prevent page reload on form submission
 
     const data = {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday,
+      username: username,
+      password: password,
+      email: email,
+      birthday: birthday,
     };
 
-    fetch("https://movie-api-lvgy.onrender.com/signup", {
+    fetch("https://movie-api-lvgy.onrender.com/users", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -89,50 +89,3 @@ export const SignupView = () => {
     </Form>
   );
 };
-
-
-  /*
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Birthday:
-        <input
-          type="date"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
-*/
