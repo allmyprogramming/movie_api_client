@@ -3,7 +3,6 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
 export const ProfileView = ({ user, token, onDeregister }) => {
-    const [userInfo, setUserInfo] = useState(user);
     const [favoriteMovies, setFavoriteMovies] = useState([]);
     const [newUsername, setNewUsername] = useState(user.username);
     const [newPassword, setNewPassword] = useState("");

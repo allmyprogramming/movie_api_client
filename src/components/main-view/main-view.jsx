@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
@@ -50,7 +50,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-     <NavigationBar user={user} onLoggedOut={handleLoggedOut} />
+      <NavigationBar user={user} onLoggedOut={handleLoggedOut} />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -70,6 +70,19 @@ export const MainView = () => {
                     setToken(token);
                   }} />
               </Col>}
+          />
+
+          <Route
+            path="/profile"
+            element={
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : (
+                <Col md={8}>
+                  <ProfileView user={user} token={token} onDeregister={handleLoggedOut} />
+                </Col>
+              )
+            }
           />
 
           <Route
