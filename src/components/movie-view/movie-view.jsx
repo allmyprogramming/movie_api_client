@@ -1,15 +1,20 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import Button from "react-bootstrap/Button";
 
 import PropTypes from "prop-types";
 import "./movie-view.scss";
 
 
-export const MovieView = ({ movie }) => {
-  if (!movie) {
+export const MovieView = ({ movies }) => {
+
+  const { movieId } = useParams()
+
+  if (!movies) {
     return <div>Loading movie details...</div>;
   }
+
+  const movie = movies.find(m => m.id === movieId);
 
   return (
     <div>
@@ -32,8 +37,8 @@ export const MovieView = ({ movie }) => {
         <span>Description: </span>
         <p>{movie.description}</p>
       </div>
-      <Link to={'/movies/'}>
-          <Button variant="primary">View Details
+      <Link to={'/'}>
+          <Button variant="primary">Back
           </Button>
         </Link>
     </div>

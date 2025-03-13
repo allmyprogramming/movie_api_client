@@ -14,7 +14,7 @@ export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+//  const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
@@ -91,10 +91,8 @@ export const MainView = () => {
             element={
               !user ?
                 <Navigate to="/login" replace /> :
-                selectedMovie ? <Col md={8}><MovieView movie={selectedMovie}/></Col> :
-                  <Col>The list is empty!
-                  </Col>
-            }
+                <Col md={8}><MovieView movie={movies}/></Col>
+              }
           />
 
           <Route
