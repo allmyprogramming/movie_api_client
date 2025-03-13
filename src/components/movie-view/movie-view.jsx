@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router";
+import Button from "react-bootstrap/Button";
 
 import PropTypes from "prop-types";
 import "./movie-view.scss";
 
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie }) => {
   if (!movie) {
     return <div>Loading movie details...</div>;
   }
@@ -30,8 +32,10 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>Description: </span>
         <p>{movie.description}</p>
       </div>
-      <button onClick={onBackClick} className="back-button">
-        Back</button>
+      <Link to={'/movies/'}>
+          <Button variant="primary">View Details
+          </Button>
+        </Link>
     </div>
   );
 };

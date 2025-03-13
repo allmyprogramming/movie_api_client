@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie }) => {
+
+  const [isFavorite, setIsFavorite] = useState(movie.isFavorite || false);
+
+  const handleToggleFavorite = () => {
+    setIsFavorite((prev) => !prev);
+  };
+
+
   return (
 
     <Card className="h-100">
@@ -19,10 +27,10 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 
         <Button
           variant="secondary"
-          onClick={() => onMovieClick(movie.id)} // Handling favorite toggle
+          onClick={handleToggleFavorite} // Handles favorite toggle
           className="mt-2"
         >
-          {movie.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         </Button>
 
       </Card.Body>
